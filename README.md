@@ -8,12 +8,11 @@ It supports basic arithmetic operations, conditional statements, and variable as
 This is a group project for a Compiler Construction class
 
 ## Contributors:
-1.
-2.
-3.
-4.
-5.  
-
+1. [Jesse Kamau](https://github.com/jesse1234)
+2. [Singh Sehmi](https://github.com/Jeevyy)
+3. [Aman Vasani]()
+4. [Sylvester Leting](https://github.com/Leting7)
+5. Adrian Oduma
 
 ## Features
 - Supports arithmetic operations: addition, subtraction, multiplication, and division.
