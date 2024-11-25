@@ -10,7 +10,7 @@ This is a group project for a Compiler Construction class
 ## Contributors:
 1. [Jesse Kamau](https://github.com/jesse1234)
 2. [Singh Sehmi](https://github.com/Jeevyy)
-3. [Aman Vasani]()
+3. [Aman Vasani](https://github.com/VasaniAman)
 4. [Sylvester Leting](https://github.com/Leting7)
 5. Adrian Oduma
 
