@@ -1,0 +1,464 @@
+Terminals unused in grammar
+
+    EQ
+    NE
+    GE
+    LE
+    UMINUS
+
+
+State 32 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: statement ';'
+
+    2 statement: expression
+    3          | assignment
+    4          | conditional
+
+    5 assignment: IDENTIFIER '=' expression
+
+    6 conditional: IF '(' expression ')' statement
+    7            | IF '(' expression ')' statement ELSE statement
+
+    8 expression: expression '+' term
+    9           | expression '-' term
+   10           | expression '>' term
+   11           | term
+
+   12 term: term '*' factor
+   13     | term '/' factor
+   14     | factor
+
+   15 factor: NUMBER
+   16       | IDENTIFIER
+   17       | '(' expression ')'
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '(' (40) 6 7 17
+    ')' (41) 6 7 17
+    '*' (42) 12
+    '+' (43) 8
+    '-' (45) 9
+    '/' (47) 13
+    ';' (59) 1
+    '=' (61) 5
+    '>' (62) 10
+    error (256)
+    NUMBER <num> (258) 15
+    IDENTIFIER <id> (259) 5 16
+    IF (260) 6 7
+    ELSE (261) 7
+    EQ (262)
+    NE (263)
+    GE (264)
+    LE (265)
+    UMINUS (266)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (21)
+        on left: 0
+    program <ast> (22)
+        on left: 1
+        on right: 0
+    statement <ast> (23)
+        on left: 2 3 4
+        on right: 1 6 7
+    assignment <ast> (24)
+        on left: 5
+        on right: 3
+    conditional <ast> (25)
+        on left: 6 7
+        on right: 4
+    expression <ast> (26)
+        on left: 8 9 10 11
+        on right: 2 5 6 7 8 9 10 17
+    term <ast> (27)
+        on left: 12 13 14
+        on right: 8 9 10 11 12 13
+    factor <ast> (28)
+        on left: 15 16 17
+        on right: 12 13 14
+
+
+State 0
+
+    0 $accept: • program $end
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 2
+    IF          shift, and go to state 3
+    '('         shift, and go to state 4
+
+    program      go to state 5
+    statement    go to state 6
+    assignment   go to state 7
+    conditional  go to state 8
+    expression   go to state 9
+    term         go to state 10
+    factor       go to state 11
+
+
+State 1
+
+   15 factor: NUMBER •
+
+    $default  reduce using rule 15 (factor)
+
+
+State 2
+
+    5 assignment: IDENTIFIER • '=' expression
+   16 factor: IDENTIFIER •
+
+    '='  shift, and go to state 12
+
+    $default  reduce using rule 16 (factor)
+
+
+State 3
+
+    6 conditional: IF • '(' expression ')' statement
+    7            | IF • '(' expression ')' statement ELSE statement
+
+    '('  shift, and go to state 13
+
+
+State 4
+
+   17 factor: '(' • expression ')'
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    expression  go to state 15
+    term        go to state 10
+    factor      go to state 11
+
+
+State 5
+
+    0 $accept: program • $end
+
+    $end  shift, and go to state 16
+
+
+State 6
+
+    1 program: statement • ';'
+
+    ';'  shift, and go to state 17
+
+
+State 7
+
+    3 statement: assignment •
+
+    $default  reduce using rule 3 (statement)
+
+
+State 8
+
+    4 statement: conditional •
+
+    $default  reduce using rule 4 (statement)
+
+
+State 9
+
+    2 statement: expression •
+    8 expression: expression • '+' term
+    9           | expression • '-' term
+   10           | expression • '>' term
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+    '>'  shift, and go to state 20
+
+    $default  reduce using rule 2 (statement)
+
+
+State 10
+
+   11 expression: term •
+   12 term: term • '*' factor
+   13     | term • '/' factor
+
+    '*'  shift, and go to state 21
+    '/'  shift, and go to state 22
+
+    $default  reduce using rule 11 (expression)
+
+
+State 11
+
+   14 term: factor •
+
+    $default  reduce using rule 14 (term)
+
+
+State 12
+
+    5 assignment: IDENTIFIER '=' • expression
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    expression  go to state 23
+    term        go to state 10
+    factor      go to state 11
+
+
+State 13
+
+    6 conditional: IF '(' • expression ')' statement
+    7            | IF '(' • expression ')' statement ELSE statement
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    expression  go to state 24
+    term        go to state 10
+    factor      go to state 11
+
+
+State 14
+
+   16 factor: IDENTIFIER •
+
+    $default  reduce using rule 16 (factor)
+
+
+State 15
+
+    8 expression: expression • '+' term
+    9           | expression • '-' term
+   10           | expression • '>' term
+   17 factor: '(' expression • ')'
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+    '>'  shift, and go to state 20
+    ')'  shift, and go to state 25
+
+
+State 16
+
+    0 $accept: program $end •
+
+    $default  accept
+
+
+State 17
+
+    1 program: statement ';' •
+
+    $default  reduce using rule 1 (program)
+
+
+State 18
+
+    8 expression: expression '+' • term
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    term    go to state 26
+    factor  go to state 11
+
+
+State 19
+
+    9 expression: expression '-' • term
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    term    go to state 27
+    factor  go to state 11
+
+
+State 20
+
+   10 expression: expression '>' • term
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    term    go to state 28
+    factor  go to state 11
+
+
+State 21
+
+   12 term: term '*' • factor
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    factor  go to state 29
+
+
+State 22
+
+   13 term: term '/' • factor
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 14
+    '('         shift, and go to state 4
+
+    factor  go to state 30
+
+
+State 23
+
+    5 assignment: IDENTIFIER '=' expression •
+    8 expression: expression • '+' term
+    9           | expression • '-' term
+   10           | expression • '>' term
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+    '>'  shift, and go to state 20
+
+    $default  reduce using rule 5 (assignment)
+
+
+State 24
+
+    6 conditional: IF '(' expression • ')' statement
+    7            | IF '(' expression • ')' statement ELSE statement
+    8 expression: expression • '+' term
+    9           | expression • '-' term
+   10           | expression • '>' term
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+    '>'  shift, and go to state 20
+    ')'  shift, and go to state 31
+
+
+State 25
+
+   17 factor: '(' expression ')' •
+
+    $default  reduce using rule 17 (factor)
+
+
+State 26
+
+    8 expression: expression '+' term •
+   12 term: term • '*' factor
+   13     | term • '/' factor
+
+    '*'  shift, and go to state 21
+    '/'  shift, and go to state 22
+
+    $default  reduce using rule 8 (expression)
+
+
+State 27
+
+    9 expression: expression '-' term •
+   12 term: term • '*' factor
+   13     | term • '/' factor
+
+    '*'  shift, and go to state 21
+    '/'  shift, and go to state 22
+
+    $default  reduce using rule 9 (expression)
+
+
+State 28
+
+   10 expression: expression '>' term •
+   12 term: term • '*' factor
+   13     | term • '/' factor
+
+    '*'  shift, and go to state 21
+    '/'  shift, and go to state 22
+
+    $default  reduce using rule 10 (expression)
+
+
+State 29
+
+   12 term: term '*' factor •
+
+    $default  reduce using rule 12 (term)
+
+
+State 30
+
+   13 term: term '/' factor •
+
+    $default  reduce using rule 13 (term)
+
+
+State 31
+
+    6 conditional: IF '(' expression ')' • statement
+    7            | IF '(' expression ')' • statement ELSE statement
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 2
+    IF          shift, and go to state 3
+    '('         shift, and go to state 4
+
+    statement    go to state 32
+    assignment   go to state 7
+    conditional  go to state 8
+    expression   go to state 9
+    term         go to state 10
+    factor       go to state 11
+
+
+State 32
+
+    6 conditional: IF '(' expression ')' statement •
+    7            | IF '(' expression ')' statement • ELSE statement
+
+    ELSE  shift, and go to state 33
+
+    ELSE      [reduce using rule 6 (conditional)]
+    $default  reduce using rule 6 (conditional)
+
+
+State 33
+
+    7 conditional: IF '(' expression ')' statement ELSE • statement
+
+    NUMBER      shift, and go to state 1
+    IDENTIFIER  shift, and go to state 2
+    IF          shift, and go to state 3
+    '('         shift, and go to state 4
+
+    statement    go to state 34
+    assignment   go to state 7
+    conditional  go to state 8
+    expression   go to state 9
+    term         go to state 10
+    factor       go to state 11
+
+
+State 34
+
+    7 conditional: IF '(' expression ')' statement ELSE statement •
+
+    $default  reduce using rule 7 (conditional)
